@@ -1,0 +1,29 @@
+.winner-state {
+    position: absolute;
+    background-color: #000000b0;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #2196f3;
+    font-size: 105px;
+    font-weight: bold;
+    display: none;
+}
+
+.copy-icon:hover + .copy-guid {
+    display: block;
+}
+.copy-guid {
+    top: -41px;
+    width: 53px;
+    left: -15px;
+    background: rgb(155, 155, 155);
+    padding: 4px;
+    text-align: center;
+    border-radius: 5px;
+    display: none;
+}

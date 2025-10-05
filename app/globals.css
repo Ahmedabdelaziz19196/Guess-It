@@ -3,10 +3,12 @@
 
 @theme {
     --color-background: #ff9f12;
+    --color-primary: #2196f3;
 }
 
 body {
     background: black;
+    color: black;
 }
 
 .bubble-shadow {
@@ -17,4 +19,32 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.custom-scroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+    background: #704900;
+    border-radius: 10px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: #ffb73d;
+    border-radius: 10px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+    background: #ffb73d;
+}
+
+.info {
+    background-color: #2196f3;
+    color: white;
+    padding-left: 6px !important;
+    height: 33px;
+    border-radius: 5px;
+    position: absolute !important;
+    bottom: 10px;
 }

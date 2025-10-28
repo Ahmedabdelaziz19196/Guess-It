@@ -127,7 +127,7 @@ function JionGmae() {
                 <p className="m-0 text-[red]">{error}</p>
             </div>
             <Button
-                className="hover:bg-primary shadow-lg hover:shadow-2xl transition-shadow info left-[10px] "
+                className="hover:bg-primary shadow-lg hover:shadow-2xl transition-shadow info left-[10px] relative"
                 onClick={handleClickOpen}
             >
                 <InfoOutlineIcon />

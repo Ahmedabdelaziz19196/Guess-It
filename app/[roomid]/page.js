@@ -186,11 +186,11 @@ function PlayRoom() {
     return (
         <Container
             maxWidth="xs"
-            className="h-[100vh] bg-background bubble-shadow relative p-0"
+            className="h-[100%] bg-background bubble-shadow relative p-0"
         >
-            <Link href="/">
+            <Link href="/" style={{ textDecoration: "none" }}>
                 <p
-                    className={`${righteous.className} text-6xl absolute left-[50%] translate-x-[-50%] w-[100%] text-center text-[black]`}
+                    className={`${righteous.className} text-6xl relative left-[50%] translate-x-[-50%] w-[100%] text-center text-[black]`}
                 >
                     Guess It
                 </p>
@@ -346,7 +346,7 @@ function PlayRoom() {
                 </Button>
             </div>
             <Button
-                className="hover:bg-primary shadow-lg hover:shadow-2xl transition-shadow info left-[10px] "
+                className="hover:bg-primary shadow-lg hover:shadow-2xl transition-shadow info left-[10px] override-position"
                 onClick={handleClickOpen}
             >
                 <InfoOutlineIcon />

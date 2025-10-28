@@ -14,6 +14,7 @@ import InfoOutlineIcon from "@mui/icons-material/InfoOutline";
 import Info from "../Components/Info";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import CheckIcon from "@mui/icons-material/Check";
+import { Margin } from "@mui/icons-material";
 
 function PlayRoom() {
     const [copyIcon, setCopyIcon] = useState(true);
@@ -255,7 +256,7 @@ function PlayRoom() {
                     />
                 )}
 
-                <div className="flex flex-col items-center w-[70%] ">
+                <div className="flex flex-col items-center w-[70%] gap-[10px]">
                     <label
                         htmlFor="guess-number"
                         className=" font-bold text-[20px] text-primary"
@@ -273,6 +274,18 @@ function PlayRoom() {
                         onChange={handleGueeses}
                         className="w-[100%] px-3 py-2 rounded-md bg-[#b16900] text-center text-[white] uppercase focus:outline-2 focus:outline-primary"
                     />
+                    <Button
+                        onClick={submitGuess}
+                        className="bg-primary text-white  h-[50px] !text-[30px] !rounded-2xl hover:bg-primary shadow-lg hover:shadow-2xl transition-shadow w-[100%]"
+                        disabled={
+                            guessNumber.length === 4 &&
+                            playerTurn === playerRole
+                                ? false
+                                : true
+                        }
+                    >
+                        Guess
+                    </Button>
                 </div>
                 <div className="guess-area w-[70%] bg-[#b16900] h-[300px] rounded-md p-3.5 overflow-y-auto custom-scroll text-center">
                     <div>
@@ -314,18 +327,6 @@ function PlayRoom() {
                         ))}
                     </div>
                 </div>
-
-                <Button
-                    onClick={submitGuess}
-                    className="bg-primary text-white  h-[50px] !text-[30px] !rounded-2xl hover:bg-primary shadow-lg hover:shadow-2xl transition-shadow w-[70%]"
-                    disabled={
-                        guessNumber.length === 4 && playerTurn === playerRole
-                            ? false
-                            : true
-                    }
-                >
-                    Guess
-                </Button>
             </div>
             <div
                 className={`${righteous.className} winner-state flex-col`}

@@ -52,6 +52,7 @@ function PlayRoom() {
         );
         setNumberOfCorrects(correctNumbers);
     }, []);
+
     function handleGueeses(e) {
         const theNumber = e.target.value.replace(/[^0-9]/g, "");
         setGuseeNumber(theNumber);
@@ -101,7 +102,6 @@ function PlayRoom() {
 
     useEffect(() => {
         function checkotherPlayerNumber() {
-            // التحقق الجديد: لو مفيش guesses، أو كل الـ guesses محسبة بالفعل، ميعملش حاجة
             if (
                 playerGuesses.length === 0 ||
                 numberOfCorrects.length >= playerGuesses.length

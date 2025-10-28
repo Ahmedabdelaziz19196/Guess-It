@@ -13,6 +13,7 @@ function Game() {
     };
     useEffect(() => {
         localStorage.removeItem("playerRole");
+        localStorage.removeItem("correctNumbers");
     }, []);
     return (
         <Container

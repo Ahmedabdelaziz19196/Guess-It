@@ -50,11 +50,13 @@ function CreateGame() {
                         name: name || " ",
                         secretNumber: number || " ",
                         guesses: [],
+                        correctGuesses: [],
                     },
                     player2: {
                         name: "",
                         secretNumber: "",
                         guesses: [],
+                        correctGuesses: [],
                     },
                 },
                 status: "waiting",

@@ -107,11 +107,9 @@ function PlayRoom() {
 
             const tempArray = [...checkNumberArray];
 
-            lastGuess.forEach((ele) => {
-                if (tempArray.includes(ele)) {
-                    const foundIndex = tempArray.indexOf(ele);
-                    correctIndexes.push(foundIndex);
-                    tempArray[foundIndex] = null;
+            lastGuess.forEach((ele, index) => {
+                if (tempArray[index] === ele) {
+                    correctIndexes.push(ele);
                 }
             });
 
@@ -125,6 +123,14 @@ function PlayRoom() {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [playerGuesses, guessesState]);
+
+    useEffect(() => {
+        if (playerTurn === playerRole) {
+            const audio = new Audio("/sound/turn.wav");
+            audio.play();
+        }
+    }, [playerTurn, playerRole]);
+
     useEffect(() => {
         if (numberOfCorrects) {
             localStorage.setItem(
@@ -174,6 +180,7 @@ function PlayRoom() {
             }
             const checkNumberArray = [...otherPlayerSecretNumber];
             setCheckNumberArray(checkNumberArray);
+            setWinner(theData.winner || "");
         }
     }, [roomData, playerRole, router, otherPlayerSecretNumber]);
     return (
@@ -218,6 +225,28 @@ function PlayRoom() {
                         )}
                     </div>
                 </div>
+                <div className="w-[70%]">
+                    <p className=" font-bold text-[20px] text-primary text-center m-0">
+                        My Number
+                    </p>
+                    <div className="flex justify-center items-center bg-primary py-2 px-3 rounded-md h-[52px]">
+                        <p className="text-3xl m-0 text-[white]">
+                            {secretNumber}
+                        </p>
+                    </div>
+                </div>
+
+                <p className=" font-light text-[20px] text-primary m-0">
+                    {playerTurn === playerRole ? (
+                        <span className="font-bold">My </span>
+                    ) : (
+                        <span className="font-bold">
+                            {otherPlayerName.toUpperCase()}{" "}
+                        </span>
+                    )}
+                    Turn
+                </p>
+
                 {!otherPlayerName && (
                     <Spinner
                         animation="border"
@@ -234,6 +263,9 @@ function PlayRoom() {
                         My Guess is
                     </label>
                     <input
+                        type="text"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
                         placeholder="Type Guess"
                         maxLength={4}
                         id="guess-number"
@@ -243,12 +275,6 @@ function PlayRoom() {
                     />
                 </div>
                 <div className="guess-area w-[70%] bg-[#b16900] h-[300px] rounded-md p-3.5 overflow-y-auto custom-scroll text-center">
-                    <p className="font-bold text-[white]">
-                        My Number:{" "}
-                        <span className="font-bold text-[white] tracking-[10px]  ">
-                            {secretNumber}
-                        </span>
-                    </p>
                     <div>
                         {playerGuesses.map((ele, index) => (
                             <div
@@ -300,22 +326,12 @@ function PlayRoom() {
                 >
                     Guess
                 </Button>
-                <p className=" font-light text-[20px] text-primary ">
-                    {playerTurn === playerRole ? (
-                        <span className="font-bold">My </span>
-                    ) : (
-                        <span className="font-bold">
-                            {otherPlayerName.toUpperCase()}{" "}
-                        </span>
-                    )}
-                    Turn
-                </p>
             </div>
             <div
                 className={`${righteous.className} winner-state flex-col`}
                 style={{ display: winner ? "flex" : "none" }}
             >
-                {winner && playerRole === winner ? (
+                {winner === playerRole ? (
                     <p className="text-primary">WINNER</p>
                 ) : (
                     <p className="text-red-700">LOSER</p>

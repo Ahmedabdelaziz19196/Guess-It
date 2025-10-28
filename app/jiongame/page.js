@@ -44,6 +44,7 @@ function JionGmae() {
                 name: name,
                 secretNumber: number,
                 guesses: [],
+                correctGuesses: [],
             },
             status: "playing",
             turn: "player1",

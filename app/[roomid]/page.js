@@ -101,29 +101,35 @@ function PlayRoom() {
 
     useEffect(() => {
         function checkotherPlayerNumber() {
-            if (playerGuesses.length === 0) return;
+            // التحقق الجديد: لو مفيش guesses، أو كل الـ guesses محسبة بالفعل، ميعملش حاجة
+            if (
+                playerGuesses.length === 0 ||
+                numberOfCorrects.length >= playerGuesses.length
+            ) {
+                return;
+            }
 
             const lastGuess = playerGuesses[playerGuesses.length - 1].split("");
             let correctIndexes = [];
 
-            const tempArray = [...checkNumberArray];
-
             lastGuess.forEach((ele, index) => {
-                if (tempArray[index] === ele) {
+                if (checkNumberArray[index] === ele) {
                     correctIndexes.push(ele);
                 }
             });
 
-            setCheckNumberArray(tempArray);
             setNumberOfCorrects((prev) => [...prev, correctIndexes.length]);
         }
 
         if (guessesState) {
             checkotherPlayerNumber();
         }
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [playerGuesses, guessesState]);
+    }, [
+        playerGuesses,
+        guessesState,
+        numberOfCorrects.length,
+        checkNumberArray,
+    ]);
 
     useEffect(() => {
         if (playerTurn === playerRole) {

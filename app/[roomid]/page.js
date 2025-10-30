@@ -27,6 +27,7 @@ function PlayRoom() {
     const [secretNumber, setSecretNumber] = useState("");
     const [otherPlayerSecretNumber, setOtherPlayerSecretNumber] = useState("");
     const [playerGuesses, setPlayerGuesses] = useState([]);
+    const [otherPlayerGuesses, setOtherPlayerGuess] = useState([]);
     const [guessNumber, setGuseeNumber] = useState("");
     const [playerTurn, setPlayerTurn] = useState("");
     const [guessesState, setGuessesState] = useState(false);
@@ -174,6 +175,7 @@ function PlayRoom() {
                     theData.players.player2.secretNumber
                 );
                 setPlayerGuesses(theData.players.player1.guesses);
+                setOtherPlayerGuess(theData.players.player2.guesses);
             } else if (playerRole === "player2") {
                 setPlayerName(theData.players.player2.name);
                 setOtherPlayerName(theData.players.player1.name);
@@ -182,6 +184,7 @@ function PlayRoom() {
                     theData.players.player1.secretNumber
                 );
                 setPlayerGuesses(theData.players.player2.guesses);
+                setOtherPlayerGuess(theData.players.player1.guesses);
             } else {
                 router.push("/");
             }
@@ -239,6 +242,19 @@ function PlayRoom() {
                     <div className="flex justify-center items-center bg-primary py-2 px-3 rounded-md h-[52px]">
                         <p className="text-3xl m-0 text-[white]">
                             {secretNumber}
+                        </p>
+                    </div>
+                </div>
+
+                <div className="w-[70%]">
+                    <p className=" font-bold text-[20px] text-primary text-center m-0">
+                        {otherPlayerName.toUpperCase()} Guess
+                    </p>
+                    <div className="flex justify-center items-center bg-primary py-2 px-3 rounded-md h-[52px]">
+                        <p className="text-3xl m-0 text-[white]">
+                            {otherPlayerGuesses[
+                                otherPlayerGuesses.length - 1
+                            ] || "- - - -"}
                         </p>
                     </div>
                 </div>
